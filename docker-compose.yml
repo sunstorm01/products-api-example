@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  app:
+    image: node:latest
+    ports:
+      - 9180:80   # application port
+      - 9400:9229 # node debug port
+    environment:
+      PORT: 80
+      HOST: 0.0.0.0
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: "npm start"
