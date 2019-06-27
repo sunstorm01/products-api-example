@@ -31,13 +31,13 @@ class ProductsService {
 		if (size < 0) {
 			size = 10;
 		}
-		return this.findByName(name)
+		return ProductsService.findByName(name)
 			.slice(page * size, page * size + size)
 			.value();
 	}
 
 	static count(name) {
-		return this.findByName(name)
+		return ProductsService.findByName(name)
 			.size()
 			.value();
 	}
