@@ -36,7 +36,7 @@ class ProductsService {
 			.value();
 	}
 
-	count(name) {
+	static count(name) {
 		return this.findByName(name)
 			.size()
 			.value();
