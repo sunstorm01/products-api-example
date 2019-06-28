@@ -17,7 +17,8 @@ class ProductsService {
 		const result = DB.get("products");
 
 		if (name) {
-			return result.find({name: name});
+			const nameRegex = new RegExp(name, "i");
+			return result.find(product => nameRegex.test(product.name));
 		}
 
 		return result;
