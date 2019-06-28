@@ -5,6 +5,7 @@ const apiSchemaUrlPath = "/v1";
 
 const productsService = require("./productsService");
 const offersService = require("./offersService");
+const shippingMethodsService = require("./shippingMethodsService");
 
 const fastify = require("fastify")({
 	logger: true
@@ -55,6 +56,12 @@ fastify.post(apiSchemaUrlPath + "/offer", (request, reply) => {
 
 	offersService.insert(request.body);
 	reply.type("application/json").send({ status: "ok" });
+});
+
+fastify.get(apiSchemaUrlPath + "/shippingMethods", (request, reply) => {
+	reply.type("application/json").send(
+		shippingMethodsService.list()
+	);
 });
 
 fastify.listen(serverPort, serverListenAddress, (err, address) => {
