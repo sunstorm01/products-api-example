@@ -24,15 +24,15 @@ fastify.get(apiSchemaUrlPath + "/ping", (request, reply) => {
 });
 
 fastify.get(apiSchemaUrlPath + "/products", (request, reply) => {
-	let page = request.query.page || 1,
-		size = request.query.size || 10,
+	let page = parseInt(request.query.page, 10) || 1,
+		size = parseInt(request.query.size, 10) || 10,
 		name = request.query.name || null,
 		totalItems = productsService.count(name),
 		totalPages = Math.ceil(totalItems / size);
 
-
+	const result = productsService.list(page, size, name);
 	reply.type("application/json").send({
-		items: productsService.list(page, size, name),
+		items: result,
 		pagination: {
 			page,
 			size,

@@ -18,7 +18,7 @@ class ProductsService {
 
 		if (name) {
 			const nameRegex = new RegExp(name, "i");
-			return result.find(product => nameRegex.test(product.name));
+			return result.filter(product => nameRegex.test(product.name));
 		}
 
 		return result;
@@ -32,8 +32,12 @@ class ProductsService {
 		if (size < 0) {
 			size = 10;
 		}
+
+		const startIndex = page * size;
+		const endIndex = page * size + size;
+
 		return ProductsService.findByName(name)
-			.slice(page * size, page * size + size)
+			.slice(startIndex, endIndex)
 			.value();
 	}
 
