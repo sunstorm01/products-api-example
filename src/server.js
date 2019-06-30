@@ -3,9 +3,11 @@ const serverListenAddress = process.env.HOST || "0.0.0.0";
 const apiSchemaVersion = "1.0.0";
 const apiSchemaUrlPath = "/v1";
 
-const productsService = require("./productsService");
-const offersService = require("./offersService");
-const shippingMethodsService = require("./shippingMethodsService");
+const productsService = require("./services/productsService");
+const offersService = require("./services/offersService");
+const shippingMethodsService = require("./services/shippingMethodsService");
+const requiredContactFieldsService = require("./services/requiredContactFieldsService");
+const paymentEndpointsService = require("./services/paymentEndpointsService");
 
 const fastify = require("fastify")({
 	logger: true
@@ -61,6 +63,24 @@ fastify.post(apiSchemaUrlPath + "/offer", (request, reply) => {
 fastify.get(apiSchemaUrlPath + "/shippingMethods", (request, reply) => {
 	reply.type("application/json").send(
 		shippingMethodsService.list()
+	);
+});
+
+fastify.get(apiSchemaUrlPath + "/requiredContactFields/billing", (request, reply) => {
+	reply.type("application/json").send(
+		requiredContactFieldsService.getBillingFields()
+	);
+});
+
+fastify.get(apiSchemaUrlPath + "/requiredContactFields/shipping", (request, reply) => {
+	reply.type("application/json").send(
+		requiredContactFieldsService.getShippingFields()
+	);
+});
+
+fastify.get(apiSchemaUrlPath + "/paymentEndpoints", (request, reply) => {
+	reply.type("application/json").send(
+		paymentEndpointsService.getEndpoints()
 	);
 });
 

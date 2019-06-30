@@ -1,4 +1,4 @@
-const dataFilePath = __dirname + "/data/Offer-API.json";
+const dataFilePath = __dirname + "/../data/Offer-API.json";
 
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");

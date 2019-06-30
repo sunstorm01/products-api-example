@@ -1,14 +1,14 @@
 const shippingMethods = [
 	{
-		name: "Free shipping",
-		description: "Send with SendPro",
+		label: "Free shipping",
+		detail: "Send with SendPro",
 		identifier: "FREE",
 		amount: 0,
 		currency: "USD"
 	},
 	{
-		name: "Fast shipping",
-		description: "Send with Road Runner",
+		label: "Fast shipping",
+		detail: "Send with Road Runner",
 		identifier: "FAST",
 		amount: 10,
 		currency: "USD"
