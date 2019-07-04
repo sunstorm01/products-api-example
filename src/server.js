@@ -34,12 +34,16 @@ fastify.get(apiSchemaUrlPath + "/products", (request, reply) => {
 
 	const offerTitle = "Our selection of products";
 	const paymentRequestTitle = "Please complete payment process";
+	const countryCode = "US";
+	const currencyCode = "USD";
 
 	const result = productsService.list(page, size, name);
 	reply.type("application/json").send({
 		items: result,
 		offerTitle: offerTitle,
 		paymentRequestTitle: paymentRequestTitle,
+		countryCode: countryCode,
+		currency: currencyCode,
 		pagination: {
 			page,
 			size,
